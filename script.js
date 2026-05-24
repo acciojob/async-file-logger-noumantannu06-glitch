@@ -1,4 +1,5 @@
-//your JS code here. If required.
+const fs = require('fs').promises;
+
 const fileNames = [
   "file1.txt",
   "file2.txt",
@@ -7,17 +8,14 @@ const fileNames = [
   "file5.txt",
 ];
 
-( async function readAllFiles() {
-	try {
-		const reads = Files.map(f => fs.readFile(f, 'utf8'));
-		const contents = Await Promise.all(reads);
-		contents.forEach((c,i) => {
-			console.log(`File ${i + 1}: ${c}`);
-		});
-	} catch (err) {
-		console.errpr('Error reading Files:', err);
-	}
-}) ();
-
-// do not change the code above
-// add your code here
+(async function readAllFiles() {
+  try {
+    const reads = fileNames.map(f => fs.readFile(f, 'utf8'));
+    const contents = await Promise.all(reads);
+    contents.forEach((c, i) => {
+      console.log(`File ${i + 1}: ${c}`);
+    });
+  } catch (err) {
+    console.error('Error reading files:', err);
+  }
+})();
